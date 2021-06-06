@@ -1,0 +1,53 @@
+$font-main: "Brown Pro";
+$color-yellow: #fac644;
+$color-yellow-light: #f2c85d;
+$color-white: #fff;
+$color-black: #000;
+$color-pink: #d6bdb6;
+$color-grey-light: #e1e1e1;
+
+$media: screen;
+$feature: min-width;
+
+$xs: 375px;
+$s: 600px;
+$m: 1024px;
+$l: 1441px;
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function em($value, $base: 16) {
+  @return strip-unit($value) / $base * 1em;
+}
+
+@mixin bp($breakpoint) {
+  @if $breakpoint == xs {
+    @media #{$media} and ($feature: $xs) {
+      @content;
+    }
+  } @else if $breakpoint == s {
+    @media #{$media} and ($feature: $s) {
+      @content;
+    }
+  } @else if $breakpoint == m {
+    @media #{$media} and ($feature: $m) {
+      @content;
+    }
+  } @else if $breakpoint == l {
+    @media #{$media} and ($feature: $l) {
+      @content;
+    }
+  }
+}
+
+@mixin BrownPro($weight: 400, $style: normal) {
+  font-family: $font-main;
+  font-weight: $weight;
+  font-style: $style;
+}
